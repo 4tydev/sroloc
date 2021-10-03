@@ -1,6 +1,6 @@
 {
   "name": "sroloc",
-  "version": "1.0.0",
+  "version": "v1.0.0",
   "description": "Arcade game developed with Phaser JS. The absurd adventures of Sroloc, a multicolored rocket who's whole purpose is to pass through colored doors infinitely...",
   "main": "server.js",
   "scripts": {
