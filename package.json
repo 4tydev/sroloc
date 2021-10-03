@@ -1,0 +1,30 @@
+{
+  "name": "sroloc",
+  "version": "1.0.0",
+  "description": "Arcade game developed with Phaser JS. The absurd adventures of Sroloc, a multicolored rocket who's whole purpose is to pass through colored doors infinitely...",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify public/js/game.js -o public/js/bundle.js",
+    "watch": "watchify public/js/game.js -o public/js/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4tydev/sroloc.git"
+  },
+  "author": "Mariano Hurtado de Mendoza (mhurtado / 4tydev)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/4tydev/sroloc/issues"
+  },
+  "homepage": "https://github.com/4tydev/sroloc#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "phaser": "^3.55.2"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "watchify": "^4.0.0"
+  }
+}
