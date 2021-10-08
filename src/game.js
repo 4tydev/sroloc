@@ -8,7 +8,7 @@ gameScene.init = function (){
 }
 gameScene.preload = function (){
     this.load.spritesheet('background', 'assets/AnimatedBackground.png', {frameWidth: 800, frameHeight:600, endFrame: 72 });
-    this.load.image('ship', 'assets/SpaceShipDemo.png');
+    this.load.image('ship', 'assets/sprites/SpaceShipDemo.png');
 }
 
 gameScene.create = function (){
