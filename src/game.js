@@ -52,6 +52,8 @@ gameScene.update = function (){
         if(newShip){
             newShip.move(this.ship.x, this.ship.y);
         }
+
+        this.ship.destroy();
     }
 }
 

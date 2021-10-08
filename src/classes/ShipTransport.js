@@ -21,6 +21,7 @@ module.exports= class ShipTransport extends Phaser.GameObjects.Image{
         if(this.y < 0){
             this.setActive(false);
             this.setVisible(false);
+            this.scene.scene.restart();
         }
     }
 }
