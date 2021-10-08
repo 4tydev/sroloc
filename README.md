@@ -10,11 +10,17 @@ Welcome to this new project called "Sroloc: The Absurd Space Adventure." A video
 
 ### Install Dependencies
 
-Node JS comes with some version of NPM (Node Package Manager) used to install needed dependencies and packages. With this run the command ´npm install´ to add dependencies from ´package.json´ file.
+Node JS comes with some version of NPM (Node Package Manager) used to install needed dependencies and packages. With this run the command `npm install` to add dependencies from `package.json` file.
 
 ### Building and Running the game
-We use [webpack](https://github.com/webpack/webpack) to bundle and build all the dependencies that are in the ´node_modules´ folder so that your browser can run the game. Also Phaser 3 only works when running a server (local or connected to the internet). To build the project run ´npm run build´ and later run ´npm start´ to start the game and play it.
+We use [webpack](https://github.com/webpack/webpack) to bundle and build all the dependencies that are in the `node_modules` folder so that your browser can run the game. Also Phaser 3 only works when running a server (local or connected to the internet). To build the project run `npm run build` and later run `npm start` to start the game and play it.
 
 ## ENJOY!
 
 Have fun running this game on your local server, you are free to help in the development!
+
+***
+
+### License
+
+This code is under the [GPL-3.0 License] (./LICENSE). This means that you are free to copy, modify and contribute to this code without any problemes, but you have to make it open source and failing to do so is going against the very principle of this project.
