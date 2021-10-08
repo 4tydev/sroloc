@@ -23,4 +23,4 @@ Have fun running this game on your local server, you are free to help in the dev
 
 ### License
 
-This code is under the [GPL-3.0 License] (./LICENSE). This means that you are free to copy, modify and contribute to this code without any problemes, but you have to make it open source and failing to do so is going against the very principle of this project.
+This code is under the [GPL-3.0 License](https://github.com/4tydev/sroloc/blob/master/LICENSE). This means that you are free to copy, modify and contribute to this code without any problemes, but you have to make it open source and failing to do so is going against the very principle of this project.
