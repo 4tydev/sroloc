@@ -6,7 +6,6 @@ const gameScene = new Phaser.Scene();
 gameScene.init = function (){
     this.movementDirection = 1;
 }
-
 gameScene.preload = function (){
     this.load.spritesheet('background', 'assets/AnimatedBackground.png', {frameWidth: 800, frameHeight:600, endFrame: 72 });
     this.load.image('ship', 'assets/SpaceShipDemo.png');
