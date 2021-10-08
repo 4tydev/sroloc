@@ -1,6 +1,6 @@
 const Phaser = require('phaser');
 
-module.exports= class Ship extends Phaser.GameObjects.Image{
+module.exports= class ShipTransport extends Phaser.GameObjects.Image{
     constructor(scene){
         super(scene,0,0,'ship')
         this.setScale(0.25);

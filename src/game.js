@@ -1,5 +1,5 @@
 const Phaser = require('phaser');
-const Ship = require('./classes/Ship');
+const ShipTransport = require('./classes/ShipTransport');
 
 const gameScene = new Phaser.Scene();
 
@@ -23,7 +23,7 @@ gameScene.create = function (){
     this.anims.create(animConfig);
 
     this.ships = this.add.group({
-        classType: Ship,
+        classType: ShipTransport,
         maxSize: 1,
         runChildUpdate: true
     });
