@@ -7,11 +7,20 @@ gameScene.init = function (){
 }
 
 gameScene.preload = function (){
-    this.load.image('stars','assets/stars.png');
+    this.load.spritesheet('background', 'assets/AnimatedBackground.png', {frameWidth: 800, frameHeight:600, endFrame: 72 });
     this.load.image('ship', 'assets/SpaceShipDemo.png');
 }
 
 gameScene.create = function (){
+    var animConfig = {
+        key: 'backgroundAnimation',
+        frames: this.anims.generateFrameNumbers('background', {start: 0, end: 72}),
+        frameRate: 20,
+        reapeat: Infinity
+    }
+
+    this.anims.create(animConfig);
+
     var Ship = new Phaser.Class({
         Extends: Phaser.GameObjects.Image,
 
@@ -48,9 +57,9 @@ gameScene.create = function (){
     });
 
     this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
-    this.stars = this.add.image(0, 0, 'stars').setOrigin(0,0);
-    this.stars.setScale(0.50);
+    this.bg = this.add.sprite(400,300,'background');
+    
+    this.bg.play('backgroundAnimation');
     
     this.ship = this.add.image(400,550,'ship');
     this.ship.setScale(0.25);
