@@ -6,6 +6,7 @@ const gameScene = new Phaser.Scene();
 
 const colors = ["Blue", "Green", "Red", "Yellow"];
 
+console.log(colors);
 gameScene.init = function () {
   this.movementDirection = 1;
   this.div4Tiles = [];
@@ -25,7 +26,12 @@ gameScene.preload = function () {
     );
   }
 
-  this.load.image("ship", "assets/sprites/SpaceShipDemo.png");
+  for (let i = 0; i < 4; i++) {
+    this.load.image(
+      colors[i].toLowerCase() + "SpaceShip",
+      "assets/sprites/" + colors[i] + "SpaceShip.png"
+    );
+  }
 };
 
 gameScene.create = function () {
@@ -66,9 +72,7 @@ gameScene.create = function () {
     runChildUpdate: true,
   });
 
-  this.ship = this.add.sprite(400, 550, "ship");
-  this.ship.setScale(0.25);
-  this.ship.depth = 0;
+  this.ship = this.add.sprite(400, 500, colors[1].toLowerCase() + "SpaceShip");
 };
 
 gameScene.update = function () {
