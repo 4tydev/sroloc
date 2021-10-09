@@ -8,7 +8,8 @@
     "dev-start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
-    "watch": "webpack --watch --config webpack.config.js"
+    "watch": "webpack --watch --config webpack.config.js",
+    "prettify": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
