@@ -1,10 +1,18 @@
-const { FOREVER } = require("phaser");
+const spawningTilePositions = require("../spawning-tile-positions.json");
+
 const Phaser = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
 
+function getRandom(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
 const gameScene = new Phaser.Scene();
-
-const colors = ["Blue", "Green", "Red", "Yellow"];
+console.log(spawningTilePositions.Div4);
+const randNum = getRandom(0, 24);
+console.log(randNum);
+const colors = spawningTilePositions.Div4[randNum];
 
 console.log(colors);
 gameScene.init = function () {
