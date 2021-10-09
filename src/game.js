@@ -18,14 +18,14 @@ gameScene.preload = function () {
     endFrame: 72,
   });
 
-  this.load.image("ship", "assets/sprites/SpaceShipDemo.png");
-
   for (let i = 0; i < 4; i++) {
     this.load.image(
       colors[i].toLowerCase() + "TileDiv4",
       "assets/tiles/Div4/" + colors[i] + "TileDiv4.png"
     );
   }
+
+  this.load.image("ship", "assets/sprites/SpaceShipDemo.png");
 };
 
 gameScene.create = function () {
@@ -43,6 +43,7 @@ gameScene.create = function () {
   this.spacebar = this.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.SPACE
   );
+
   this.bg = this.add.sprite(400, 300, "background");
 
   this.bg.play("backgroundAnimation");
@@ -52,9 +53,10 @@ gameScene.create = function () {
   for (let i = 0; i < 4; i++) {
     this.div4Tiles.push(
       this.add
-        .image(between, 100, colors[i].toLowerCase() + "TileDiv4")
+        .sprite(between, 100, colors[i].toLowerCase() + "TileDiv4")
         .setOrigin(0, 0)
     );
+    this.div4Tiles[i].setDepth(1);
     between += 200;
   }
 
@@ -64,8 +66,9 @@ gameScene.create = function () {
     runChildUpdate: true,
   });
 
-  this.ship = this.add.image(400, 550, "ship");
+  this.ship = this.add.sprite(400, 550, "ship");
   this.ship.setScale(0.25);
+  this.ship.depth = 0;
 };
 
 gameScene.update = function () {
