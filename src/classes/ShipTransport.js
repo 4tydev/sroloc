@@ -1,10 +1,8 @@
 const Phaser = require("phaser");
 
-const colors = ["Blue", "Green", "Red", "Yellow"];
-
 module.exports = class ShipTransport extends Phaser.GameObjects.Image {
   constructor(scene) {
-    super(scene, 0, 0, colors[1].toLowerCase() + "SpaceShip");
+    super(scene, 0, 0, scene.colors[1].toLowerCase() + "SpaceShip");
     this.speed = Phaser.Math.GetSpeed(500, 1);
   }
 

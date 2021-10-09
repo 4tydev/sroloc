@@ -1,4 +1,4 @@
-const spawningTilePositions = require("../spawning-tile-positions.json");
+const spawningTilePositions = require("./spawning-tile-positions.json");
 
 const Phaser = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
@@ -8,16 +8,16 @@ function getRandom(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
-const gameScene = new Phaser.Scene();
-console.log(spawningTilePositions.Div4);
-const randNum = getRandom(0, 24);
-console.log(randNum);
-const colors = spawningTilePositions.Div4[randNum];
 
-console.log(colors);
+const gameScene = new Phaser.Scene();
+
+const randNum = getRandom(0, 24);
+
 gameScene.init = function () {
   this.movementDirection = 1;
   this.div4Tiles = [];
+  this.randNum = getRandom(0, 24);
+  this.colors = spawningTilePositions.Div4[this.randNum];
 };
 
 gameScene.preload = function () {
@@ -29,15 +29,15 @@ gameScene.preload = function () {
 
   for (let i = 0; i < 4; i++) {
     this.load.image(
-      colors[i].toLowerCase() + "TileDiv4",
-      "assets/tiles/Div4/" + colors[i] + "TileDiv4.png"
+      this.colors[i].toLowerCase() + "TileDiv4",
+      "assets/tiles/Div4/" + this.colors[i] + "TileDiv4.png"
     );
   }
 
   for (let i = 0; i < 4; i++) {
     this.load.image(
-      colors[i].toLowerCase() + "SpaceShip",
-      "assets/sprites/" + colors[i] + "SpaceShip.png"
+      this.colors[i].toLowerCase() + "SpaceShip",
+      "assets/sprites/" + this.colors[i] + "SpaceShip.png"
     );
   }
 };
@@ -52,6 +52,7 @@ gameScene.create = function () {
     frameRate: 20,
     repeat: Infinity,
   };
+
   this.anims.create(animConfig);
 
   this.spacebar = this.input.keyboard.addKey(
@@ -67,7 +68,7 @@ gameScene.create = function () {
   for (let i = 0; i < 4; i++) {
     this.div4Tiles.push(
       this.add
-        .sprite(between, 100, colors[i].toLowerCase() + "TileDiv4")
+        .sprite(between, 100, this.colors[i].toLowerCase() + "TileDiv4")
         .setOrigin(0, 0)
     );
     this.div4Tiles[i].setDepth(1);
@@ -80,7 +81,11 @@ gameScene.create = function () {
     runChildUpdate: true,
   });
 
-  this.ship = this.add.sprite(400, 500, colors[1].toLowerCase() + "SpaceShip");
+  this.ship = this.add.sprite(
+    400,
+    500,
+    this.colors[1].toLowerCase() + "SpaceShip"
+  );
 };
 
 gameScene.update = function () {
