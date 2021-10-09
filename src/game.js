@@ -1,11 +1,20 @@
-const { FOREVER } = require("phaser");
+const spawningTilePositions = require("../spawning-tile-positions.json");
+
 const Phaser = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
 
+function getRandom(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
 const gameScene = new Phaser.Scene();
+console.log(spawningTilePositions.Div4);
+const randNum = getRandom(0, 24);
+console.log(randNum);
+const colors = spawningTilePositions.Div4[randNum];
 
-const colors = ["Blue", "Green", "Red", "Yellow"];
-
+console.log(colors);
 gameScene.init = function () {
   this.movementDirection = 1;
   this.div4Tiles = [];
@@ -25,7 +34,12 @@ gameScene.preload = function () {
     );
   }
 
-  this.load.image("ship", "assets/sprites/SpaceShipDemo.png");
+  for (let i = 0; i < 4; i++) {
+    this.load.image(
+      colors[i].toLowerCase() + "SpaceShip",
+      "assets/sprites/" + colors[i] + "SpaceShip.png"
+    );
+  }
 };
 
 gameScene.create = function () {
@@ -66,9 +80,7 @@ gameScene.create = function () {
     runChildUpdate: true,
   });
 
-  this.ship = this.add.sprite(400, 550, "ship");
-  this.ship.setScale(0.25);
-  this.ship.depth = 0;
+  this.ship = this.add.sprite(400, 500, colors[1].toLowerCase() + "SpaceShip");
 };
 
 gameScene.update = function () {

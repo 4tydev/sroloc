@@ -1,0 +1,31 @@
+{
+  "Div4": [
+    ["Blue", "Green", "Red", "Yellow"],
+    ["Blue", "Green", "Yellow", "Red"],
+    ["Blue", "Red", "Green", "Yellow"],
+    ["Blue", "Red", "Yellow", "Green"],
+    ["Blue", "Yellow", "Green", "Red"],
+    ["Blue", "Yellow", "Red", "Green"],
+
+    ["Green", "Blue", "Red", "Yellow"],
+    ["Green", "Blue", "Yellow", "Red"],
+    ["Green", "Red", "Blue", "Yellow"],
+    ["Green", "Red", "Yellow", "Blue"],
+    ["Green", "Yellow", "Blue", "Red"],
+    ["Green", "Yellow", "Red", "Blue"],
+
+    ["Red", "Blue", "Green", "Yellow"],
+    ["Red", "Blue", "Yellow", "Green"],
+    ["Red", "Green", "Blue", "Yellow"],
+    ["Red", "Green", "Yellow", "Blue"],
+    ["Red", "Yellow", "Blue", "Green"],
+    ["Red", "Yellow", "Green", "Blue"],
+
+    ["Yellow", "Blue", "Red", "Green"],
+    ["Yellow", "Blue", "Green", "Red"],
+    ["Yellow", "Red", "Blue", "Green"],
+    ["Yellow", "Red", "Green", "Blue"],
+    ["Yellow", "Green", "Blue", "Red"],
+    ["Yellow", "Green", "Red", "Blue"]
+  ]
+}
