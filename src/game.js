@@ -11,13 +11,12 @@ function getRandom(min, max) {
 
 const gameScene = new Phaser.Scene();
 
-const randNum = getRandom(0, 24);
-
 gameScene.init = function () {
   this.movementDirection = 1;
   this.div4Tiles = [];
-  this.randNum = getRandom(0, 24);
-  this.colors = spawningTilePositions.Div4[this.randNum];
+  this.randNumTiles = getRandom(0, 24);
+  this.randNumShip = getRandom(0, 4);
+  this.colors = spawningTilePositions.Div4[this.randNumTiles];
 };
 
 gameScene.preload = function () {
@@ -84,7 +83,7 @@ gameScene.create = function () {
   this.ship = this.add.sprite(
     400,
     500,
-    this.colors[1].toLowerCase() + "SpaceShip"
+    this.colors[this.randNumShip].toLowerCase() + "SpaceShip"
   );
 };
 
