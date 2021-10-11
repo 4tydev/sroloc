@@ -4,3 +4,6 @@ node_modules
 ### PISKEL FILES ###
 assets/tiles/piskelFiles
 assets/sprites/piskelFiles
+
+### EXTRA ASSETS ###
+assets/sprites/explosions
