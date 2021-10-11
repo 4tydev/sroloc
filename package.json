@@ -5,11 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev-start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
-    "watch": "webpack --watch --config webpack.config.js",
-    "prettify": "npx prettier --write ."
+    "start-dev": "nodemon server.js",
+    "build": "clear && webpack --config webpack.config.js",
+    "watch": "clear && webpack --watch --config webpack.config.js",
+    "prettify": "npx prettier --write .",
+    "compile-dev": "npm run prettify && npm run build && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

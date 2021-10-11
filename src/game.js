@@ -1,4 +1,4 @@
-const spawningTilePositions = require("../spawning-tile-positions.json");
+const spawningTilePositions = require("./spawning-tile-positions.json");
 
 const Phaser = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
@@ -8,16 +8,18 @@ function getRandom(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
-const gameScene = new Phaser.Scene();
-console.log(spawningTilePositions.Div4);
-const randNum = getRandom(0, 24);
-console.log(randNum);
-const colors = spawningTilePositions.Div4[randNum];
 
-console.log(colors);
+const gameScene = new Phaser.Scene();
+
 gameScene.init = function () {
   this.movementDirection = 1;
   this.div4Tiles = [];
+  this.randNumTiles = getRandom(0, 24);
+  this.randNumShip = getRandom(0, 4);
+  this.tileColors = spawningTilePositions.Div4[this.randNumTiles];
+  this.mainColors = ["Blue", "Green", "Red", "Yellow"];
+  this.newShip;
+  this.tileRects = [];
 };
 
 gameScene.preload = function () {
@@ -29,15 +31,15 @@ gameScene.preload = function () {
 
   for (let i = 0; i < 4; i++) {
     this.load.image(
-      colors[i].toLowerCase() + "TileDiv4",
-      "assets/tiles/Div4/" + colors[i] + "TileDiv4.png"
+      this.tileColors[i].toLowerCase() + "TileDiv4",
+      "assets/tiles/Div4/" + this.tileColors[i] + "TileDiv4.png"
     );
   }
 
   for (let i = 0; i < 4; i++) {
     this.load.image(
-      colors[i].toLowerCase() + "SpaceShip",
-      "assets/sprites/" + colors[i] + "SpaceShip.png"
+      this.mainColors[i].toLowerCase() + "SpaceShip",
+      "assets/sprites/" + this.mainColors[i] + "SpaceShip.png"
     );
   }
 };
@@ -52,6 +54,7 @@ gameScene.create = function () {
     frameRate: 20,
     repeat: Infinity,
   };
+
   this.anims.create(animConfig);
 
   this.spacebar = this.input.keyboard.addKey(
@@ -65,12 +68,13 @@ gameScene.create = function () {
   let between = 0;
 
   for (let i = 0; i < 4; i++) {
-    this.div4Tiles.push(
-      this.add
-        .sprite(between, 100, colors[i].toLowerCase() + "TileDiv4")
-        .setOrigin(0, 0)
-    );
-    this.div4Tiles[i].setDepth(1);
+    this.div4Tiles.push({
+      color: this.tileColors[i],
+      sprite: this.add
+        .sprite(between, 100, this.tileColors[i].toLowerCase() + "TileDiv4")
+        .setOrigin(0, 0),
+    });
+    this.div4Tiles[i].sprite.setDepth(1);
     between += 200;
   }
 
@@ -80,7 +84,11 @@ gameScene.create = function () {
     runChildUpdate: true,
   });
 
-  this.ship = this.add.sprite(400, 500, colors[1].toLowerCase() + "SpaceShip");
+  this.ship = this.add.sprite(
+    400,
+    500,
+    this.mainColors[this.randNumShip].toLowerCase() + "SpaceShip"
+  );
 };
 
 gameScene.update = function () {
@@ -91,16 +99,22 @@ gameScene.update = function () {
   }
 
   this.ship.x += this.movementDirection;
-  if (Phaser.Input.Keyboard.JustDown(this.spacebar)) {
-    var newShip = this.ships.get();
 
-    if (newShip) {
-      newShip.move(this.ship.x, this.ship.y);
+  if (!this.newShip) {
+    if (Phaser.Input.Keyboard.JustDown(this.spacebar)) {
+      this.newShip = this.ships.get();
+
+      if (this.newShip) {
+        this.newShip.move(this.ship.x, this.ship.y);
+      }
+
+      this.ship.destroy();
     }
 
-    this.ship.destroy();
+    this.newShip = undefined;
   }
 };
+spacePressed = true;
 
 const config = {
   type: Phaser.AUTO,

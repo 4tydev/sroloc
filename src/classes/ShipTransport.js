@@ -1,11 +1,15 @@
 const Phaser = require("phaser");
 
-const colors = ["Blue", "Green", "Red", "Yellow"];
-
-module.exports = class ShipTransport extends Phaser.GameObjects.Image {
+module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
   constructor(scene) {
-    super(scene, 0, 0, colors[1].toLowerCase() + "SpaceShip");
+    super(
+      scene,
+      0,
+      0,
+      scene.mainColors[scene.randNumShip].toLowerCase() + "SpaceShip"
+    );
     this.speed = Phaser.Math.GetSpeed(500, 1);
+    this.color = scene.mainColors[scene.randNumShip];
   }
 
   move(x, y) {
@@ -17,6 +21,31 @@ module.exports = class ShipTransport extends Phaser.GameObjects.Image {
 
   update(time, delta) {
     this.y -= this.speed * delta;
+
+    let shipRect = this.getBounds();
+    //HIT TILE IS UNDEFINED HERE;
+    let hitTile;
+
+    if (!hitTile) {
+      for (let i = 0; i < 4; i++) {
+        if (
+          Phaser.Geom.Intersects.RectangleToRectangle(
+            this.scene.div4Tiles[i].sprite.getBounds(),
+            shipRect
+          )
+        ) {
+          hitTile = this.scene.div4Tiles[i];
+          break;
+        }
+      }
+
+      if (hitTile) {
+        if (hitTile.color !== this.color) {
+          console.log("Hit wrong color");
+          this.scene.scene.restart();
+        }
+      }
+    }
 
     if (this.y < 0) {
       this.setActive(false);
