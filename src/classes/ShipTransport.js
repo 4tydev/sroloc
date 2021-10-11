@@ -42,7 +42,13 @@ module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
       if (hitTile) {
         if (hitTile.color !== this.color) {
           console.log("Hit wrong color");
-          this.scene.scene.restart();
+          let explosion = this.scene.add.sprite(this.x, this.y, "explosion");
+          let sceneRef = this.scene.scene;
+          this.destroy();
+          explosion.play("explosionAnimation");
+          explosion.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            sceneRef.restart();
+          })
         }
       }
     }

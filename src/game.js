@@ -29,6 +29,12 @@ gameScene.preload = function () {
     endFrame: 72,
   });
 
+  this.load.spritesheet("explosion", "assets/Explosion.png", {
+    frameWidth: 48,
+    frameHeight: 48,
+    endFrame: 7
+  })
+
   for (let i = 0; i < 4; i++) {
     this.load.image(
       this.tileColors[i].toLowerCase() + "TileDiv4",
@@ -45,7 +51,7 @@ gameScene.preload = function () {
 };
 
 gameScene.create = function () {
-  var animConfig = {
+  var bgAnimConfig = {
     key: "backgroundAnimation",
     frames: this.anims.generateFrameNumbers("background", {
       start: 0,
@@ -55,7 +61,16 @@ gameScene.create = function () {
     repeat: Infinity,
   };
 
-  this.anims.create(animConfig);
+  var explosionAnimConfig = {
+    key: "explosionAnimation",
+    frames: this.anims.generateFrameNumbers("explosion", {
+      start: 0,
+      end: 7
+    }),
+    frameRate: 20
+  }
+  this.anims.create(bgAnimConfig);
+  this.anims.create(explosionAnimConfig);
 
   this.spacebar = this.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.SPACE
