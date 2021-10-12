@@ -1,4 +1,5 @@
 const Phaser = require("phaser");
+const {score} = require('../globalVariables.json');
 
 module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
   constructor(scene) {
@@ -56,6 +57,7 @@ module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
     if (this.y < 0) {
       this.setActive(false);
       this.setVisible(false);
+      console.log(this.scene.score)
       this.scene.scene.restart();
     }
   }

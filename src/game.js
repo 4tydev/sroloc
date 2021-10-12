@@ -1,4 +1,5 @@
 const spawningTilePositions = require("./spawning-tile-positions.json");
+const {score} = require('./globalVariables.json');
 
 const Phaser = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
@@ -12,6 +13,8 @@ function getRandom(min, max) {
 const gameScene = new Phaser.Scene();
 
 gameScene.init = function () {
+  let styleSheet = document.getElementsByTagName('style')[0].sheet;
+  styleSheet.insertRule('@font-face{ font-family: "pixel"; src: url("/assets/PressStart2P.ttf"); format("truetype");');
   this.movementDirection = 1;
   this.div4Tiles = [];
   this.randNumTiles = getRandom(0, 24);
@@ -20,9 +23,12 @@ gameScene.init = function () {
   this.mainColors = ["Blue", "Green", "Red", "Yellow"];
   this.newShip;
   this.tileRects = [];
+  this.score = 0;
+  console.log(this.score);
 };
 
 gameScene.preload = function () {
+  this.load.script('webfont','https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
   this.load.spritesheet("background", "assets/AnimatedBackground.png", {
     frameWidth: 800,
     frameHeight: 600,
@@ -51,6 +57,19 @@ gameScene.preload = function () {
 };
 
 gameScene.create = function () {
+
+  this.scoreText;
+  let sceneRef = this;
+  
+  WebFont.load({
+    custom: {
+      families: ["pixel"]
+    },
+    active: function(){
+      sceneRef.scoreText = sceneRef.add.text(10,10,'Score: ' + sceneRef.score, {fontFamily: 'pixel'});
+    }
+  });
+
   var bgAnimConfig = {
     key: "backgroundAnimation",
     frames: this.anims.generateFrameNumbers("background", {
@@ -107,9 +126,9 @@ gameScene.create = function () {
 };
 
 gameScene.update = function () {
-  if (this.ship.x === 700) {
+  if (this.ship.x === 750) {
     this.movementDirection *= -1;
-  } else if (this.ship.x === 100) {
+  } else if (this.ship.x === 50) {
     this.movementDirection *= -1;
   }
 
