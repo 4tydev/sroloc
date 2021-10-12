@@ -1,5 +1,4 @@
 const Phaser = require("phaser");
-const {score} = require('../globalVariables.json');
 
 module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
   constructor(scene) {
