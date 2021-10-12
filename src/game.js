@@ -1,5 +1,4 @@
 const spawningTilePositions = require("./spawning-tile-positions.json");
-const {score} = require('./globalVariables.json');
 
 const Phaser = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
