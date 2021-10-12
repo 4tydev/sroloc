@@ -4,18 +4,30 @@ const {score} = require('./globalVariables.json');
 const Phaser = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
 
+
 function getRandom(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+localStorage.setItem('score',0);
+
 const gameScene = new Phaser.Scene();
 
 gameScene.init = function () {
   let styleSheet = document.getElementsByTagName('style')[0].sheet;
   styleSheet.insertRule('@font-face{ font-family: "pixel"; src: url("/assets/PressStart2P.ttf"); format("truetype");');
-  this.movementDirection = 1;
+  this.movementStartDirection = getRandom(0,2);
+  this.movementDirection;
+
+  if(this.movementStartDirection === 0){
+    this.movementDirection = 3
+  }
+  else{
+    this.movementDirection = -3;
+  }
+
   this.div4Tiles = [];
   this.randNumTiles = getRandom(0, 24);
   this.randNumShip = getRandom(0, 4);
@@ -23,8 +35,6 @@ gameScene.init = function () {
   this.mainColors = ["Blue", "Green", "Red", "Yellow"];
   this.newShip;
   this.tileRects = [];
-  this.score = 0;
-  console.log(this.score);
 };
 
 gameScene.preload = function () {
@@ -66,7 +76,7 @@ gameScene.create = function () {
       families: ["pixel"]
     },
     active: function(){
-      sceneRef.scoreText = sceneRef.add.text(10,10,'Score: ' + sceneRef.score, {fontFamily: 'pixel'});
+      sceneRef.scoreText = sceneRef.add.text(10,10,'Score: ' + localStorage.getItem('score'), {fontFamily: 'pixel'});
     }
   });
 
@@ -126,9 +136,9 @@ gameScene.create = function () {
 };
 
 gameScene.update = function () {
-  if (this.ship.x === 750) {
+  if (this.ship.x >= 750) {
     this.movementDirection *= -1;
-  } else if (this.ship.x === 50) {
+  } else if (this.ship.x <= 50) {
     this.movementDirection *= -1;
   }
 
