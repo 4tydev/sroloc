@@ -8,7 +8,10 @@ module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
       0,
       scene.mainColors[scene.randNumShip].toLowerCase() + "SpaceShip"
     );
-    this.speed = Phaser.Math.GetSpeed(Math.abs(scene.movementDirection) * 200, 1);
+    this.speed = Phaser.Math.GetSpeed(
+      Math.abs(scene.movementDirection) * 200,
+      1
+    );
     this.color = scene.mainColors[scene.randNumShip];
   }
 
@@ -47,9 +50,9 @@ module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
           this.destroy();
           explosion.play("explosionAnimation");
           explosion.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            localStorage.setItem('score', 0);
+            localStorage.setItem("score", 0);
             sceneRef.restart();
-          })
+          });
         }
       }
     }
@@ -57,10 +60,10 @@ module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
     if (this.y < 0) {
       this.setActive(false);
       this.setVisible(false);
-      let scoreString = localStorage.getItem('score');
+      let scoreString = localStorage.getItem("score");
       let score = parseInt(scoreString);
       score++;
-      localStorage.setItem('score', score)
+      localStorage.setItem("score", score);
       this.scene.scene.restart();
     }
   }
