@@ -50,6 +50,7 @@ module.exports = class ShipTransport extends Phaser.GameObjects.Sprite {
           this.destroy();
           explosion.play("explosionAnimation");
           explosion.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            localStorage.clear();
             localStorage.setItem("score", 0);
             sceneRef.restart();
           });

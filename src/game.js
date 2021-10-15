@@ -3,29 +3,34 @@ const spawningTilePositions = require("./spawning-tile-positions.json");
 const Phaser = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
 
-
 function getRandom(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-localStorage.setItem('score',0);
-
+localStorage.setItem("score", 160);
 const gameScene = new Phaser.Scene();
 
 gameScene.init = function () {
-  let styleSheet = document.getElementsByTagName('style')[0].sheet;
-  styleSheet.insertRule('@font-face{ font-family: "pixel"; src: url("/assets/PressStart2P.ttf"); format("truetype");');
-  this.movementStartDirection = getRandom(0,2);
+  let styleSheet = document.getElementsByTagName("style")[0].sheet;
+  styleSheet.insertRule(
+    '@font-face{ font-family: "pixel"; src: url("/assets/PressStart2P.ttf"); format("truetype");'
+  );
+  this.movementStartDirection = getRandom(0, 2);
   this.movementDirection;
 
-  if(this.movementStartDirection === 0){
-    this.movementDirection = 3
+  let score = parseInt(localStorage.getItem("score"));
+
+  if (this.movementStartDirection === 0) {
+    this.movementDirection = 3 + (0.000001 + Math.sqrt(score));
+  } else {
+    this.movementDirection = -3 + (-0.000001 - Math.sqrt(score));
   }
-  else{
-    this.movementDirection = -3;
-  }
+
+  console.log(
+    `Score: ${localStorage.getItem("score")}: ${this.movementDirection}`
+  );
 
   this.div4Tiles = [];
   this.randNumTiles = getRandom(0, 24);
@@ -37,7 +42,10 @@ gameScene.init = function () {
 };
 
 gameScene.preload = function () {
-  this.load.script('webfont','https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
+  this.load.script(
+    "webfont",
+    "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+  );
   this.load.spritesheet("background", "assets/AnimatedBackground.png", {
     frameWidth: 800,
     frameHeight: 600,
@@ -47,8 +55,8 @@ gameScene.preload = function () {
   this.load.spritesheet("explosion", "assets/Explosion.png", {
     frameWidth: 48,
     frameHeight: 48,
-    endFrame: 7
-  })
+    endFrame: 7,
+  });
 
   for (let i = 0; i < 4; i++) {
     this.load.image(
@@ -66,17 +74,21 @@ gameScene.preload = function () {
 };
 
 gameScene.create = function () {
-
   this.scoreText;
   let sceneRef = this;
-  
+
   WebFont.load({
     custom: {
-      families: ["pixel"]
+      families: ["pixel"],
     },
-    active: function(){
-      sceneRef.scoreText = sceneRef.add.text(10,10,'Score: ' + localStorage.getItem('score'), {fontFamily: 'pixel'});
-    }
+    active: function () {
+      sceneRef.scoreText = sceneRef.add.text(
+        10,
+        10,
+        "Score: " + localStorage.getItem("score"),
+        { fontFamily: "pixel" }
+      );
+    },
   });
 
   var bgAnimConfig = {
@@ -93,10 +105,10 @@ gameScene.create = function () {
     key: "explosionAnimation",
     frames: this.anims.generateFrameNumbers("explosion", {
       start: 0,
-      end: 7
+      end: 7,
     }),
-    frameRate: 20
-  }
+    frameRate: 20,
+  };
   this.anims.create(bgAnimConfig);
   this.anims.create(explosionAnimConfig);
 
