@@ -9,8 +9,7 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-localStorage.setItem("score", 0);
-
+localStorage.setItem("score", 160);
 const gameScene = new Phaser.Scene();
 
 gameScene.init = function () {
@@ -21,11 +20,17 @@ gameScene.init = function () {
   this.movementStartDirection = getRandom(0, 2);
   this.movementDirection;
 
+  let score = parseInt(localStorage.getItem("score"));
+
   if (this.movementStartDirection === 0) {
-    this.movementDirection = 3;
+    this.movementDirection = 3 + (0.000001 + Math.sqrt(score));
   } else {
-    this.movementDirection = -3;
+    this.movementDirection = -3 + (-0.000001 - Math.sqrt(score));
   }
+
+  console.log(
+    `Score: ${localStorage.getItem("score")}: ${this.movementDirection}`
+  );
 
   this.div4Tiles = [];
   this.randNumTiles = getRandom(0, 24);
@@ -174,4 +179,3 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
-console.log(game.loop.actualFps);

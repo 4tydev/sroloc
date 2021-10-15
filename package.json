@@ -17,7 +17,7 @@
     "url": "git+https://github.com/4tydev/sroloc.git"
   },
   "author": "Mariano Hurtado de Mendoza (mhurtado / 4tydev)",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/4tydev/sroloc/issues"
   },
