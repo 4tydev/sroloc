@@ -3,6 +3,9 @@
   "version": "v1.0.0",
   "description": "Arcade game developed with Phaser JS. The absurd adventures of Sroloc, a multicolored rocket who's whole purpose is to pass through colored doors infinitely...",
   "main": "server.js",
+  "engines": {
+    "node" : ">=14"
+  }
   "scripts": {
     "start": "node server.js",
     "start-dev": "nodemon server.js",
