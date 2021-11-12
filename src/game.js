@@ -169,6 +169,7 @@ gameScene.update = function () {
     this.newShip = undefined;
   }
 };
+
 spacePressed = true;
 
 const config = {
