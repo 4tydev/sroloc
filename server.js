@@ -9,6 +9,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/dist/index.html"));
 });
 
-app.listen(8080, () => {
+app.listen(5000, () => {
   console.log("Game Server Started at http://localhost:8080");
 });
