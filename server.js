@@ -6,7 +6,7 @@ app.use("/dist", express.static(path.join(__dirname, "/dist")));
 app.use("/assets", express.static(path.join(__dirname, "/assets")));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/dist/index.html");
+  res.sendFile(path.join(__dirname, "/dist/index.html"));
 });
 
 app.listen(8080, () => {
