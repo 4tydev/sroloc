@@ -13,10 +13,6 @@ localStorage.setItem("score", 160);
 const gameScene = new Phaser.Scene();
 
 gameScene.init = function () {
-  let styleSheet = document.getElementsByTagName("style")[0].sheet;
-  styleSheet.insertRule(
-    '@font-face{ font-family: "pixel"; src: url("/assets/PressStart2P.ttf"); format("truetype");'
-  );
   this.movementStartDirection = getRandom(0, 2);
   this.movementDirection;
 
@@ -46,13 +42,13 @@ gameScene.preload = function () {
     "webfont",
     "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
   );
-  this.load.spritesheet("background", "assets/AnimatedBackground.png", {
+  this.load.spritesheet("background", "../assets/AnimatedBackground.png", {
     frameWidth: 800,
     frameHeight: 600,
     endFrame: 72,
   });
 
-  this.load.spritesheet("explosion", "assets/Explosion.png", {
+  this.load.spritesheet("explosion", "../assets/Explosion.png", {
     frameWidth: 48,
     frameHeight: 48,
     endFrame: 7,
@@ -61,14 +57,14 @@ gameScene.preload = function () {
   for (let i = 0; i < 4; i++) {
     this.load.image(
       this.tileColors[i].toLowerCase() + "TileDiv4",
-      "assets/tiles/Div4/" + this.tileColors[i] + "TileDiv4.png"
+      "../assets/tiles/Div4/" + this.tileColors[i] + "TileDiv4.png"
     );
   }
 
   for (let i = 0; i < 4; i++) {
     this.load.image(
       this.mainColors[i].toLowerCase() + "SpaceShip",
-      "assets/sprites/" + this.mainColors[i] + "SpaceShip.png"
+      "../assets/sprites/" + this.mainColors[i] + "SpaceShip.png"
     );
   }
 };
