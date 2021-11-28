@@ -9,7 +9,7 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-localStorage.setItem("score", 160);
+localStorage.setItem("score", 0);
 const gameScene = new Phaser.Scene();
 
 gameScene.init = function () {
