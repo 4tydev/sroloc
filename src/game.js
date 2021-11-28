@@ -116,6 +116,7 @@ gameScene.create = function () {
     Phaser.Input.Keyboard.KeyCodes.SPACE
   );
 
+  this.touch
   this.bg = this.add.sprite(400, 300, "background");
 
   this.bg.play("backgroundAnimation");

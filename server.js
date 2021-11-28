@@ -14,5 +14,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("Game Server Started at http://localhost:8080");
+  console.log("Game Server Started at http://localhost:5000");
 });
