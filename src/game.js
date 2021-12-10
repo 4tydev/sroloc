@@ -1,6 +1,4 @@
-const spawningTilePositions = require("./spawning-tile-positions.json");
-
-const Phaser = require("phaser");
+const {Scene, Input, AUTO, Game} = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
 
 function getRandom(min, max) {
@@ -9,98 +7,10 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-localStorage.setItem("score", 160);
-const gameScene = new Phaser.Scene();
+localStorage.setItem("score", 0);
+const MainScene = require("./classes/MainScene");
 
-gameScene.init = function () {
-  let styleSheet = document.getElementsByTagName("style")[0].sheet;
-  styleSheet.insertRule(
-    '@font-face{ font-family: "pixel"; src: url("/assets/PressStart2P.ttf"); format("truetype");'
-  );
-  this.movementStartDirection = getRandom(0, 2);
-  this.movementDirection;
-
-  let score = parseInt(localStorage.getItem("score"));
-
-  if (this.movementStartDirection === 0) {
-    this.movementDirection = 3 + (0.000001 + Math.sqrt(score));
-  } else {
-    this.movementDirection = -3 + (-0.000001 - Math.sqrt(score));
-  }
-
-  console.log(
-    `Score: ${localStorage.getItem("score")}: ${this.movementDirection}`
-  );
-
-  this.div4Tiles = [];
-  this.randNumTiles = getRandom(0, 24);
-  this.randNumShip = getRandom(0, 4);
-  this.tileColors = spawningTilePositions.Div4[this.randNumTiles];
-  this.mainColors = ["Blue", "Green", "Red", "Yellow"];
-  this.newShip;
-  this.tileRects = [];
-};
-
-gameScene.preload = function () {
-  this.load.script(
-    "webfont",
-    "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
-  );
-  this.load.spritesheet("background", "assets/AnimatedBackground.png", {
-    frameWidth: 800,
-    frameHeight: 600,
-    endFrame: 72,
-  });
-
-  this.load.spritesheet("explosion", "assets/Explosion.png", {
-    frameWidth: 48,
-    frameHeight: 48,
-    endFrame: 7,
-  });
-
-  for (let i = 0; i < 4; i++) {
-    this.load.image(
-      this.tileColors[i].toLowerCase() + "TileDiv4",
-      "assets/tiles/Div4/" + this.tileColors[i] + "TileDiv4.png"
-    );
-  }
-
-  for (let i = 0; i < 4; i++) {
-    this.load.image(
-      this.mainColors[i].toLowerCase() + "SpaceShip",
-      "assets/sprites/" + this.mainColors[i] + "SpaceShip.png"
-    );
-  }
-};
-
-gameScene.create = function () {
-  this.scoreText;
-  let sceneRef = this;
-
-  WebFont.load({
-    custom: {
-      families: ["pixel"],
-    },
-    active: function () {
-      sceneRef.scoreText = sceneRef.add.text(
-        10,
-        10,
-        "Score: " + localStorage.getItem("score"),
-        { fontFamily: "pixel" }
-      );
-    },
-  });
-
-  var bgAnimConfig = {
-    key: "backgroundAnimation",
-    frames: this.anims.generateFrameNumbers("background", {
-      start: 0,
-      end: 72,
-    }),
-    frameRate: 20,
-    repeat: Infinity,
-  };
-
+<<<<<<< HEAD
   var explosionAnimConfig = {
     key: "explosionAnimation",
     frames: this.anims.generateFrameNumbers("explosion", {
@@ -171,12 +81,14 @@ gameScene.update = function () {
 };
 
 spacePressed = true;
+=======
+>>>>>>> main
 
 const config = {
-  type: Phaser.AUTO,
+  type: AUTO,
   width: 800,
   height: 600,
-  scene: gameScene,
+  scene: [ MainScene ],
 };
 
-const game = new Phaser.Game(config);
+const game = new Game(config);
