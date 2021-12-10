@@ -1,5 +1,3 @@
-const spawningTilePositions = require("./spawning-tile-positions.json");
-
 const {Scene, Input, AUTO, Game} = require("phaser");
 const ShipTransport = require("./classes/ShipTransport");
 
