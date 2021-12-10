@@ -19,8 +19,8 @@ module.exports = class HomeScene extends Scene {
   }
 
   create() {
-      this.srolocTitle = this.add.image(400,300,"background_static");
-      this.background = this.add.image(400,100, "srolocTitle");
+      this.background = this.add.image(400,300,"background_static");
+      this.srolocTitle = this.add.image(400,100, "srolocTitle");
   }
 
   update() {
