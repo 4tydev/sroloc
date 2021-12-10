@@ -10,3 +10,6 @@ assets/sprites/explosions
 
 ### VSCODE
 .vscode/
+
+### Bundle files
+client/dist/bundle.*
