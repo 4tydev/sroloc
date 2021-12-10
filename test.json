@@ -1,0 +1,18 @@
+{
+  "username": "tug",
+  "password": "123456",
+  "highscore": {
+    "score": 67,
+    "date": "TODAY"
+  },
+  "scores": [
+    {
+      "score": 67,
+      "date": "TODAY"
+    },
+    {
+      "score": 54,
+      "date": "yesterday"
+    }
+  ]
+}

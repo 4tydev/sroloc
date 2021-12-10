@@ -26,7 +26,10 @@
   },
   "homepage": "https://github.com/4tydev/sroloc#readme",
   "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mongoose": "^6.1.1",
     "phaser": "^3.55.2"
   },
   "devDependencies": {
