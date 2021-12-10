@@ -2,14 +2,28 @@ const { Scene } = require("phaser");
 
 module.exports = class HomeScene extends Scene {
   constructor() {
-    super();
+    super(
+        {
+            key: "home",
+            active: true,
+        }
+    );
   }
 
-  init() {}
+  init() {
+  }
 
-  preload() {}
+  preload() {
+      this.load.image("srolocTitle", "/assets/SROLOC.svg")
+      this.load.image("background_static", "/assets/StaticBackground.png");
+  }
 
-  create() {}
+  create() {
+      this.srolocTitle = this.add.image(400,300,"background_static");
+      this.background = this.add.image(400,100, "srolocTitle");
+  }
 
-  update() {}
+  update() {
+
+  }
 };
