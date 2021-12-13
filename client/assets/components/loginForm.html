@@ -1,0 +1,43 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    *{
+        font-family: 'Press Start 2P', cursive; ;
+    }
+    .login{
+        background: transparent;
+        border: 1px solid white;
+        height: 257px;
+        margin: 20px auto 0;
+        width: 298px;
+    }
+    input[type="password"], input[type="text"]{
+        background-color: black;
+        border: 1px solid white;
+        box-sizing: border-box;
+        height: 39px;
+        margin: 25px;
+        padding-left: 37px;
+        width: 240px;
+    }
+    input[type="submit"]{
+        color: white;
+        background: transparent;
+        width: 120px;
+        height: 35px;
+        display: block;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        padding-top: 6px;
+        margin: 29px 0 0 29px;
+        position: relative;
+        cursor:pointer;
+        border: 1px solid white;
+    }
+</style>
+<div class="login">
+    <input type="text"  placeholder="Username" id="username" name="username">
+    <input type="password" placeholder="Password" id="password" name="password">
+    <input type="submit" value="Sign in" name="loginButton"> 
+</div>

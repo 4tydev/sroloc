@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const app = express();
-
+const {exec} = require("child_process");
 const PORT = process.env.PORT || 5000;
 const DIST_DIR = path.join(__dirname, "../client/dist");
 const HTML_FILE = path.join(DIST_DIR, "index.html");
@@ -22,5 +22,6 @@ app.get("/login", (req, res) => {
 
 })
 app.listen(PORT, () => {
+  exec('google-chrome http://localhost:5000');
   console.log("Game Server Started at http://localhost:5000");
 });

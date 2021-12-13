@@ -8,6 +8,9 @@ const config = {
   type: AUTO,
   width: 800,
   height: 600,
+  dom: {
+    createContainer: true
+  },
   scene: [HomeScene, MainScene],
 };
 
