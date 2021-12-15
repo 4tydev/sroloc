@@ -13,7 +13,7 @@ module.exports = class MainScene extends Scene{
     constructor(){
         super(
             {
-                key:"main",
+                key:"MainScene",
                 active: false,
             }
         );
